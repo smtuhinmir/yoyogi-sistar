@@ -20,3 +20,40 @@ document.querySelectorAll(".menu-header").forEach(header => {
     header.parentElement.classList.toggle("active");
   });
 });
+
+// banner animation
+
+document.addEventListener("DOMContentLoaded", function () {
+    let index = 0;
+    const slides = document.querySelector('.slides');
+    const totalSlides = document.querySelectorAll('.slides img').length;
+
+    setInterval(() => {
+        index = (index + 1) % totalSlides;
+        slides.style.transform = `translateX(-${index * 100}%)`;
+    }, 3000);
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    let index = 0;
+    const slides = document.querySelector('.slides');
+    const totalSlides = document.querySelectorAll('.slides img').length;
+    const progressBar = document.querySelector('.progress-bar');
+
+    function startSlide() {
+        // reset animation
+        progressBar.classList.remove('progress-animate');
+        void progressBar.offsetWidth; // force reflow
+        progressBar.classList.add('progress-animate');
+
+        // change slide after 3s
+        setTimeout(() => {
+            index = (index + 1) % totalSlides;
+            slides.style.transform = `translateX(-${index * 100}%)`;
+            startSlide(); // loop
+        }, 3000);
+    }
+
+    startSlide();
+});
