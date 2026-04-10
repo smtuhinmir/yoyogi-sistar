@@ -211,6 +211,57 @@ display: flex;
   max-height: 600px;
 }
 
+/* BANNER */
+.banner {
+    width: 100%;
+    max-width: 1580px;
+    margin: 0 auto;
+    aspect-ratio: 1080 / 400;
+    overflow: hidden;
+    position: relative;
+}
+
+.slides {
+    display: flex;
+    height: 100%;
+    transition: transform 0.6s ease-in-out;
+}
+
+.slides img {
+    width: 100%;          /* ❌ THIS caused issue before */
+    flex: 0 0 100%;       /* ✅ FIX: each image = 1 full slide */
+    height: 100%;
+    object-fit: cover;
+    
+}
+.progress-bar {
+    position: absolute;
+    bottom: 10px;          /* move to bottom */
+    left: 50%;             /* center horizontally */
+    transform: translateX(-50%);
+    
+    height: 2px;           /* thinner */
+    width: 0%;
+    max-width: 300px;      /* controls total length */
+    
+    background: #000;      /* black */
+    z-index: 10;
+}
+
+/* animation */
+.progress-animate {
+    animation: progress 3s linear forwards;
+}
+
+@keyframes progress {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
 /* MOBILE */
 @media (max-width: 960px) {
 
@@ -288,4 +339,24 @@ display: flex;
 .mobile-nav {
   scrollbar-width: thin;
   scrollbar-color: black transparent;
+}
+/* Tablet */
+@media (max-width: 1024px) {
+    .banner {
+        aspect-ratio: 1080 / 400; /* taller */
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .banner {
+        aspect-ratio: 1080 / 950; /* much taller */
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .banner {
+        aspect-ratio: 1080 / 1080; /* extra tall */
+    }
 }
