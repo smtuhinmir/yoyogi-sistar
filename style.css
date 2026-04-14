@@ -2,14 +2,135 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family:  Arial, sans-serif;
 }
 
 body {
   background: #fff;
 }
+/* .......NEW , BEST SELLER....... */
 
-/* DO NOT TOUCH */
+.product-section {
+  padding: 60px 20px;
+}
+
+/* TITLE */
+.section-title {
+  text-align: center;
+  font-weight: 300;
+  letter-spacing: 5px;
+  margin-bottom: 40px;
+}
+
+/* SLIDER */
+.slider-wrapper {
+  position: relative;
+}
+
+.product-container {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease-in-out;
+
+}
+
+/* PRODUCT */
+.product {
+  min-width: 220px;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.product img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+/* BADGES */
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 10px;
+  padding: 4px 6px;
+  color: #fff;
+}
+
+.badge.new { background: #ff5a1f; }
+.badge.hot { background: #a9441f; }
+.badge.best { background: #4aa3df; }
+
+.badge.second {
+  left: 45px;
+}
+
+/* TEXT */
+.name {
+  font-size: 11px;
+  margin-top: 10px;
+}
+
+.price {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* COLORS */
+.colors {
+  display: flex;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.colors span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* ARROWS */
+.arrow {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.arrow.left { left: -10px; }
+.arrow.right { right: -10px; }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .product {
+    min-width: 160px;
+  }
+
+  .product img {
+    height: 200px;
+  }
+}
+/* DESKTOP: always 5 cards */
+@media (min-width: 1024px) {
+  .product-container {
+    gap: 20px;
+  }
+
+  .product {
+    flex: 0 0 calc((100% - 80px) / 5);
+    /* 4 gaps × 20px = 80px */
+    max-width: calc((100% - 80px) / 5);
+  }
+
+  .product img {
+    height: 260px;
+  }
+}
+/* .................................... */
 .logo a{
     font-size: 16px;
     font-weight: bold;
@@ -23,6 +144,10 @@ body {
   flex-direction: column;
   padding: 20px 40px;
   border-bottom: 1px solid #eee;
+
+  /* ✅ FIX */
+  position: relative;
+  z-index: 2000;
 }
 
 .nav-top {
@@ -64,7 +189,10 @@ body {
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
-  z-index: 1001;
+
+  /* ✅ FIX */
+  position: relative;
+  z-index: 3000;
 }
 
 .hamburger span {
@@ -140,13 +268,14 @@ body {
   padding: 20px 30px;
   border: 1px solid #eee;
 
-display: flex;
+  display: flex;
   flex-direction: column;
   gap: 10px;
 
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
+
   z-index: 999;
 }
 
@@ -171,6 +300,9 @@ display: flex;
 /* MOBILE MENU */
 .mobile-nav {
   display: none;
+
+  /* ✅ FIX */
+  z-index: 2500;
 }
 
 /* Accordion */
@@ -228,38 +360,33 @@ display: flex;
 }
 
 .slides img {
-    width: 100%;          /* ❌ THIS caused issue before */
-    flex: 0 0 100%;       /* ✅ FIX: each image = 1 full slide */
+    width: 100%;
+    flex: 0 0 100%;
     height: 100%;
     object-fit: cover;
-    
 }
+
 .progress-bar {
     position: absolute;
-    bottom: 10px;          /* move to bottom */
-    left: 50%;             /* center horizontally */
+    bottom: 10px;
+    left: 50%;
     transform: translateX(-50%);
     
-    height: 2px;           /* thinner */
+    height: 2px;
     width: 0%;
-    max-width: 300px;      /* controls total length */
+    max-width: 300px;
     
-    background: #000;      /* black */
+    background: #000;
     z-index: 10;
 }
 
-/* animation */
 .progress-animate {
     animation: progress 3s linear forwards;
 }
 
 @keyframes progress {
-    from {
-        width: 0%;
-    }
-    to {
-        width: 100%;
-    }
+    from { width: 0%; }
+    to { width: 100%; }
 }
 
 /* MOBILE */
@@ -292,7 +419,6 @@ display: flex;
     background: white;
     padding-top: 80px;
     transition: 0.3s;
-    z-index: 1000;
 
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -340,23 +466,24 @@ display: flex;
   scrollbar-width: thin;
   scrollbar-color: black transparent;
 }
+
 /* Tablet */
 @media (max-width: 1024px) {
     .banner {
-        aspect-ratio: 1080 / 400; /* taller */
+        aspect-ratio: 1080 / 400;
     }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
     .banner {
-        aspect-ratio: 1080 / 950; /* much taller */
+        aspect-ratio: 1080 / 950;
     }
 }
 
 /* Small phones */
 @media (max-width: 480px) {
     .banner {
-        aspect-ratio: 1080 / 1080; /* extra tall */
+        aspect-ratio: 1080 / 1080;
     }
 }
